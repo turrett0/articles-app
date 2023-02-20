@@ -128,8 +128,8 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
-    port: 4200,
-    hot: isDev
+    port: 3000,
+    hot: isDev,
   },
   devtool: isDev ? 'source-map' : '',
   plugins: plugins(),
