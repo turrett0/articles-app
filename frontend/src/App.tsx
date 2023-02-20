@@ -2,7 +2,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 //components
-import { Layout } from './entities'
+
 
 //pages
 import { Home } from './pages'
@@ -15,14 +15,23 @@ import { store } from './store'
 import { ThemeProvider } from 'styled-components'
 import { appTheme } from './theme'
 
+//antd
+import 'antd/dist/reset.css'
+import Article from './features/article/Article'
+import { PrimaryLayout } from './layouts'
+
 function App() {
   const router = createBrowserRouter([
     {
-      element: <Layout />,
+      element: <PrimaryLayout />,
       children: [
         {
           path: '/',
           element: <Home />,
+        },
+        {
+          path: '/article/:id',
+          element: <Article />,
         },
       ],
     },

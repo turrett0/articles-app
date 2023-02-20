@@ -22,6 +22,7 @@
   },
   "include": [
     "src",
-    "./declarations/styled.d.ts"
+    "./declarations/styled.d.ts",
+    "./declarations/imgreexport.d.ts"
   ]
 }

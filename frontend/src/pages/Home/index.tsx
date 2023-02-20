@@ -1,5 +1,11 @@
-import React from "react";
+import { Row } from 'antd'
+import React from 'react'
+import Articles from '../../entities/articles/Articles'
 
 export const Home = () => {
-	return <div>Home</div>;
-};
+  return (
+    <Row>
+      <Articles />
+    </Row>
+  )
+}
