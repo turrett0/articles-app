@@ -1,9 +1,9 @@
 export interface IComment {
-  date: string
-  id: string
-  title: string
+  article: string;
+  id: number;
+  text: string;
+  user: string;
 }
-
 
 export interface ICreateCommentFormData {
   title: string

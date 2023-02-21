@@ -1,25 +1,21 @@
-import { Button, Card, Col, Row, Typography } from 'antd'
+import { Card, Col, Row, Typography } from 'antd'
 import { FC } from 'react'
-
-import { useParams } from 'react-router-dom'
-import { Arrow } from '../../assets/icons'
-import { useGetArticleQuery } from '../../http/api/articles'
 import { IArticle } from '../../http/api/articles/models'
 import { SafeZone } from '../../layouts/safeZone/SafeZoneLayout'
 import GoBack from '../../shared/GoBack/GoBack'
 import { toDate } from '../../tools/date'
 
-const Article = () => {
-  const { id = null } = useParams()
+type Props = {
+  articleData:IArticle
+}
 
-  const { data } = useGetArticleQuery(id, {
-    skip: !id,
-  })
+const Article:FC<Props> = ({articleData}) => {
 
-  if (!data) {
+
+  if (!articleData) {
     return <>error placeholder</>
   }
-  const { title, date, text } = data
+  const { title, date, text } = articleData
 
   return (
     <SafeZone>

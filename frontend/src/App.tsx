@@ -19,6 +19,7 @@ import { appTheme } from './theme'
 import 'antd/dist/reset.css'
 import Article from './features/article/Article'
 import { PrimaryLayout } from './layouts'
+import { ArticlePage } from './pages/ArticlePage/ArticlePage'
 
 function App() {
   const router = createBrowserRouter([
@@ -31,7 +32,7 @@ function App() {
         },
         {
           path: '/article/:id',
-          element: <Article />,
+          element: <ArticlePage />,
         },
       ],
     },

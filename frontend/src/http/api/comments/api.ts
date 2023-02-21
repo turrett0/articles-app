@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { IArticle } from '../articles/models'
 import { IComment, ICreateCommentFormData } from './models'
 
 export const commentsAPI = createApi({
@@ -7,7 +8,7 @@ export const commentsAPI = createApi({
     baseUrl: process.env.REACT_APP_API_ROOT_URL,
   }),
   endpoints: (builder) => ({
-    getComments: builder.query<any, void>({
+    getComments: builder.query<IComment[], IArticle['id']>({
       query: () => `/comments`,
     }),
     createComments: builder.mutation<IComment, ICreateCommentFormData>({

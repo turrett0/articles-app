@@ -1,9 +1,19 @@
-import React from 'react'
+import { Card, Row, Typography } from 'antd'
+import { FC } from 'react'
+import { IComment } from '../../http/api/comments'
+import { SComment } from './Comment.styled'
 
-const Comment = () => {
-  return (
-    <div>Comment</div>
-  )
+type Props = {
+  commentData: IComment
 }
 
-export default Comment
+export const Comment: FC<Props> = ({ commentData }) => {
+  console.log(commentData)
+  return (
+    <SComment>
+      <Card>
+        <Typography.Text>{commentData.text}</Typography.Text>
+      </Card>
+    </SComment>
+  )
+}
