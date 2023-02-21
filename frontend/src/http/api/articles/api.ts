@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IPagination } from '../../shared'
+import { IPaginatedServerResponse, IPagination } from '../../shared'
 
 import { IArticle, IArticlePreview, ICreateArticleFormData } from './models'
 
@@ -10,8 +10,11 @@ export const articlesAPI = createApi({
   }),
   tagTypes: ['articles'], //
   endpoints: (builder) => ({
-    getArticles: builder.query<IArticlePreview[], IPagination>({
-      query: () => `/articles`,
+    getArticles: builder.query<IPaginatedServerResponse<IArticlePreview[]>, IPagination>({
+      query: (pagination) => ({
+        url: `/articles`,
+        params: pagination,
+      }),
       providesTags: ['articles'],
     }),
     getArticle: builder.query<IArticle, IArticle['id'] | null>({

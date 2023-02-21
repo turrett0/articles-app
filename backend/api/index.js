@@ -2,17 +2,25 @@ let router = require('express').Router()
 let assign = require('object-assign')
 let mocks = require('./mock')
 let rndm = require('rndm')
+const paginate = require('./tools/paginate')
 
 let ID_LENGTH = 24
 
 router.get('/articles', function (req, res, next) {
-  let articles = mocks.articles.map(function (article) {
-    return assign({}, article, {
-      text: undefined,
-    })
-  })
+  const { page, count } = req?.query || {};
+  console.log(req.query)
+  if (page && count) {
 
-  res.json(articles)
+    let articles = paginate(mocks.articles, count, page).map(function (article) {
+      return assign({}, article, {
+        text: undefined,
+      })
+    })
+
+    res.json({ total: articles.length, data: articles })
+  }
+  res.status(500).json({ error: 'Internal server error' })
+
 })
 
 router.get('/articles/:id', function (req, res, next) {
@@ -39,15 +47,19 @@ router.post('/articles', function (req, res, next) {
 })
 
 router.get('/comments', function (req, res, next) {
-  let aid = req.query.article || null
+  let { article: aid, page, count } = req.query || {}
   let comments =
     aid !== null
       ? mocks.comments.filter(function (comment) {
-          return comment.article === aid
-        })
+        return comment.article === aid
+      })
       : mocks.comments
 
-  res.json(comments)
+      const paginatedComments = paginate(comments, count, page)
+      console.log({paginatedComments,page,count})
+  res.json({
+    data: paginatedComments, total: paginatedComments.length
+  })
 })
 
 router.post('/comments', function (req, res, next) {

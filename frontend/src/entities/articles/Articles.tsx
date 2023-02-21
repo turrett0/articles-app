@@ -8,11 +8,11 @@ import ArticlePreview from '../article-preview/ArticlePreview'
 
 const Articles = () => {
   const [pagination, setPagination] = useState<IPagination>({
-    page: 0,
+    page: 1,
     count: 10,
   })
 
-  const { data: articles, isLoading } = useGetArticlesQuery(pagination)
+  const { data: { data: articles, total } = {}, isLoading } = useGetArticlesQuery(pagination)
   const { lg, md, xxl } = Grid.useBreakpoint()
 
   const currentColSpan = useMemo(() => {
@@ -36,7 +36,7 @@ const Articles = () => {
         {isLoading ? (
           <CommonSkeleton span={currentColSpan} length={15} />
         ) : (
-          <Row>
+          <Col span={24}>
             <Row>
               {articles?.map((article) => (
                 <Col span={currentColSpan}>
@@ -44,8 +44,8 @@ const Articles = () => {
                 </Col>
               ))}
             </Row>
-            <Pagination/>
-          </Row>
+              <Pagination />
+          </Col>
         )}
       </Row>
     </SafeZone>

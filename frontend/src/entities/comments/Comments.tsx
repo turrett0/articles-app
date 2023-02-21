@@ -1,8 +1,9 @@
 import { Card, Col, Row, Typography } from 'antd'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Comment } from '../../features/comment/Comment'
 import { IArticle } from '../../http/api/articles/models'
 import { useGetCommentsQuery } from '../../http/api/comments'
+import { IPagination } from '../../http/shared'
 import { SafeZone } from '../../layouts/safeZone/SafeZoneLayout'
 import { CommonSkeleton } from '../../shared/Skeleton/Skeleton'
 import { SComments } from './Comments.styled'
@@ -12,10 +13,18 @@ type Props = {
 }
 
 const Comments: FC<Props> = ({ articleId }) => {
-  const { data: comments, isLoading } = useGetCommentsQuery(articleId)
+  const [pagination, setPagination] = useState<IPagination>({
+    count: 2,
+    page: 1,
+  })
+  const { data: { data: comments, total } = {}, isLoading } = useGetCommentsQuery({ ...pagination, article: articleId })
 
   if (!comments) {
-    return <>placeholder 500</>
+    return <>placeholder 404</>
+  }
+
+  if(!total){
+    return <></>
   }
 
   return (
