@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row } from 'antd'
+import { Button, Col, DatePicker, Form, Input, Row } from 'antd'
 import { FC } from 'react'
 import { IArticlesSearchParams } from '../../http/api/articles'
 
@@ -17,12 +17,19 @@ export const ArticlesSearchBar: FC<Props> = ({ onSubmit }) => {
     <Form form={form} onFinish={onSubmit}>
       <Row gutter={[16, 0]}>
         <Col>
-          <Form.Item  name={'title'}>
-            <Input placeholder={"Title"} allowClear />
+          <Form.Item name={'title'}>
+            <Input placeholder={'Title'} allowClear />
           </Form.Item>
         </Col>
         <Col>
-          <Button type={"primary"} htmlType="submit">Search</Button>
+          <Form.Item name={'rangeDate'}>
+            <DatePicker.RangePicker />
+          </Form.Item>
+        </Col>
+        <Col>
+          <Button type={'primary'} htmlType="submit">
+            Search
+          </Button>
           <Button onClick={onFormClearHandler} type={'ghost'}>
             Clear
           </Button>

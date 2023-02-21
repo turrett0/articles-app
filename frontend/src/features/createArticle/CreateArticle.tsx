@@ -5,11 +5,12 @@ import { SCreateArticle } from './CreateArticle.styled'
 
 type Props = {
   onSubmit: (formData: ICreateArticleFormData) => void
+  isSubmitting?: boolean
 }
 
 const defaultValidationMessage = 'Please fill this field'
 
-export const CreateArticle: FC<Props> = ({ onSubmit }) => {
+export const CreateArticle: FC<Props> = ({ onSubmit, isSubmitting }) => {
   const [form] = Form.useForm()
 
   return (
@@ -23,7 +24,9 @@ export const CreateArticle: FC<Props> = ({ onSubmit }) => {
         </Form.Item>
         <Row justify={'end'} align="middle">
           <Col>
-            <Button htmlType="submit">Submit</Button>
+            <Button htmlType="submit" loading={isSubmitting}>
+              Submit
+            </Button>
           </Col>
         </Row>
       </Form>

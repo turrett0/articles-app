@@ -2,24 +2,24 @@ import styled from 'styled-components'
 
 export const SPaginationItem = styled.button<{ active: boolean }>`
   transition: background-color 0.3s;
-  background-color: ${(props) => (props.active ? 'steelblue' : 'whitesmoke')};
+  background-color: ${(props) => (props.active ? props.theme.secondaryColor : props.theme.unselectedColor)};
   color: ${(props) => (props.active ? 'white' : 'black')};
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
 
   &:hover {
-    background-color: steelblue;
-    color:white;
+    background-color: ${({ theme }) => theme.secondaryColor};
+    color: white;
   }
 `
 
 export const SPaginationBreadCrumbs = styled.p`
   transition: background-color 0.3s;
 
-  background-color: whitesmoke;
+  background-color: ${({ theme }) => theme.unselectedColor};
   width: 35px;
   height: 35px;
   border-radius: 10%;
@@ -32,7 +32,7 @@ export const SPaginationBreadCrumbs = styled.p`
   cursor: pointer;
 
   &:hover {
-    background-color: steelblue;
-    color:white
+    background-color: ${({ theme }) => theme.secondaryColor};
+    color: white;
   }
 `

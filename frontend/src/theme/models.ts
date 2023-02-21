@@ -1,3 +1,5 @@
 export interface ITheme {
-  main: string
+  primaryColor:string;
+  secondaryColor:string;
+  unselectedColor:string
 }

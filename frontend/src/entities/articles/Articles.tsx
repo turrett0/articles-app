@@ -51,10 +51,6 @@ const Articles = () => {
     return 6
   }, [lg, md, xxl])
 
-  useEffect(() => {
-    console.log(pagination)
-  }, [pagination])
-
   return (
     <SafeZone>
       <Row justify={'center'}>

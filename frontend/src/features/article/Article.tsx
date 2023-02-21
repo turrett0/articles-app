@@ -6,23 +6,19 @@ import GoBack from '../../shared/goBack/GoBack'
 import { toDate } from '../../tools/date'
 
 type Props = {
-  articleData:IArticle
+  articleData: IArticle
 }
 
-const Article:FC<Props> = ({articleData}) => {
-
-
+const Article: FC<Props> = ({ articleData }) => {
   if (!articleData) {
     return <>error placeholder</>
   }
   const { title, date, text } = articleData
 
   return (
-    <SafeZone>
-      <Card title={<ArticleTitle data={{ title, date }} />}>
-        <Typography.Text>{text}</Typography.Text>
-      </Card>
-    </SafeZone>
+    <Card title={<ArticleTitle data={{ title, date }} />}>
+      <Typography.Text>{text}</Typography.Text>
+    </Card>
   )
 }
 

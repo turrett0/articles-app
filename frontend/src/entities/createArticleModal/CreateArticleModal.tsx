@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 //antd
-import { Button, Col, Modal, Row, Typography } from 'antd'
+import { Modal } from 'antd'
 
 //features
 import { CreateArticle } from '../../features/createArticle'
@@ -19,7 +19,7 @@ type Props = {
 }
 
 export const CreateArticleModal: FC<Props> = ({ open, closeModal }) => {
-  const [createPost] = useCreateArticleMutation()
+  const [createPost, { isLoading }] = useCreateArticleMutation()
 
   const onFormFinishHandler = (formData: ICreateArticleFormData) => {
     createPost(formData)
@@ -29,7 +29,7 @@ export const CreateArticleModal: FC<Props> = ({ open, closeModal }) => {
   return (
     <Modal open={open} okText={'Submit'} footer={null} onCancel={closeModal} destroyOnClose>
       <SafeZone>
-        <CreateArticle onSubmit={onFormFinishHandler} />
+        <CreateArticle onSubmit={onFormFinishHandler} isSubmitting={isLoading} />
       </SafeZone>
     </Modal>
   )

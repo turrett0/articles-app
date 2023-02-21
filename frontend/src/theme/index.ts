@@ -1,5 +1,7 @@
 import { ITheme } from './models'
 
 export const appTheme: ITheme = {
-  main: 'red',
+  primaryColor: '#feebef;',
+  secondaryColor:"steelblue",
+  unselectedColor:"whitesmoke"
 }
