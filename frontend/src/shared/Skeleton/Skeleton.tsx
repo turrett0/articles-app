@@ -1,4 +1,4 @@
-import { Col, Card } from 'antd'
+import { Col, Card, Row } from 'antd'
 import Meta from 'antd/es/card/Meta'
 import React, { FC } from 'react'
 
@@ -21,10 +21,10 @@ export const CommonSkeleton: FC<SkeletonProps> = ({ span, length }) => {
   }
 
   return (
-    <>
+    <Row gutter={[16, 16]}>
       {new Array(length).fill(null).map((item) => (
         <SkeletonComponent />
       ))}
-    </>
+    </Row>
   )
 }

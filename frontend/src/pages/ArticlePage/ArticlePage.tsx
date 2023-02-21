@@ -1,3 +1,4 @@
+import { Collapse } from 'antd'
 import { useParams } from 'react-router-dom'
 import Comments from '../../entities/comments/Comments'
 import Article from '../../features/article/Article'
@@ -19,7 +20,11 @@ export const ArticlePage = () => {
   return (
     <SArticlePage>
       <Article articleData={currentArticle} />
-      <Comments articleId={articleId} />
+      <Collapse defaultActiveKey={['1']}>
+        <Collapse.Panel header={'Commentaries'} key={'1'}>
+          <Comments articleId={articleId} />
+        </Collapse.Panel>
+      </Collapse>
     </SArticlePage>
   )
 }

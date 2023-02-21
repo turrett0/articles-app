@@ -19,7 +19,7 @@ type Props = {
 }
 
 export const CreateArticleModal: FC<Props> = ({ open, closeModal }) => {
-  const [createPost, { isSuccess }] = useCreateArticleMutation()
+  const [createPost] = useCreateArticleMutation()
 
   const onFormFinishHandler = (formData: ICreateArticleFormData) => {
     createPost(formData)

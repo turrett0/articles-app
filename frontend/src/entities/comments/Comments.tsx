@@ -1,10 +1,11 @@
-import { Card, Col, Row, Typography } from 'antd'
+import { Col, Row } from 'antd'
 import { FC, useState } from 'react'
 import { Comment } from '../../features/comment/Comment'
 import { IArticle } from '../../http/api/articles/models'
 import { useGetCommentsQuery } from '../../http/api/comments'
 import { IPagination } from '../../http/shared'
 import { SafeZone } from '../../layouts/safeZone/SafeZoneLayout'
+import { EmptyFallback } from '../../shared/emptyFallback/EmptyFallback'
 import { Pagination } from '../../shared/pagination/Pagination'
 import { CommonSkeleton } from '../../shared/Skeleton/Skeleton'
 import { SComments } from './Comments.styled'
@@ -24,32 +25,28 @@ const Comments: FC<Props> = ({ articleId }) => {
     return <>placeholder 404</>
   }
 
-  if (!total) {
-    return <></>
-  }
-
   return (
     <SComments>
       <SafeZone>
-        <Card>
-          <Row>
-            <Typography.Title level={4}>Commetaries</Typography.Title>
-          </Row>
-          <Row gutter={[0, 16]}>
-            <Col span={24}>
-              {}
-              {isLoading ? (
-                <CommonSkeleton span={24} />
-              ) : (
-                <Row gutter={[0, 16]}>
-                  {comments.map((comment) => (
-                    <Col span={24}>
+        <Row gutter={[0, 16]}>
+          <Col span={24}>
+            {isLoading ? (
+              <CommonSkeleton span={24} />
+            ) : (
+              <Row gutter={[0, 16]} justify={'center'}>
+                {comments?.length ? (
+                  comments.map((comment) => (
+                    <Col key={`__comment-${comment.id}`} span={24}>
                       <Comment commentData={comment} />
                     </Col>
-                  ))}
-                </Row>
-              )}
-            </Col>
+                  ))
+                ) : (
+                  <EmptyFallback title={'There is no Comments yet.'} />
+                )}
+              </Row>
+            )}
+          </Col>
+          {total ? (
             <Col span={24}>
               <Row justify={'end'}>
                 <Col>
@@ -62,8 +59,10 @@ const Comments: FC<Props> = ({ articleId }) => {
                 </Col>
               </Row>
             </Col>
-          </Row>
-        </Card>
+          ) : (
+            <></>
+          )}
+        </Row>
       </SafeZone>
     </SComments>
   )

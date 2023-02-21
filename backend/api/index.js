@@ -7,11 +7,9 @@ const paginate = require('./tools/paginate')
 let ID_LENGTH = 24
 
 router.get('/articles', function (req, res, next) {
-  const { page, count } = req?.query || {};
-  console.log(req.query)
+  const { page, count,title } = req?.query || {};
   if (page && count) {
-
-    let articles = mocks.articles.map(function (article) {
+    let articles = title ? mocks.articles.filter(article => article.title.toLowerCase().includes(title.toLowerCase())) : mocks.articles.map(function (article) {
       return assign({}, article, {
         text: undefined,
       })

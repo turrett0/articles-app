@@ -19,7 +19,7 @@ export const CreateArticle: FC<Props> = ({ onSubmit }) => {
           <Input placeholder="Here is an article" />
         </Form.Item>
         <Form.Item label="Content" name="text" rules={[{ required: true, message: defaultValidationMessage }]}>
-          <Input.TextArea placeholder="Lorem..."  />
+          <Input.TextArea placeholder="Lorem..." />
         </Form.Item>
         <Row justify={'end'} align="middle">
           <Col>

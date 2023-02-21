@@ -1,3 +1,5 @@
+import { IPagination } from '../../shared'
+
 export interface IArticlePreview {
   date: string
   id: string
@@ -13,5 +15,11 @@ export interface IArticle {
 
 export interface ICreateArticleFormData {
   title: string
-  content: string
+  text: string
 }
+
+export type IArticlesSearchParams = {
+  title?: string | null
+}
+
+export type TGetArticlesRequestParams = IPagination & IArticlesSearchParams

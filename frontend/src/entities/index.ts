@@ -1,4 +1,4 @@
-export * from './article-preview/ArticlePreview';
+export * from '../features/article-preview/ArticlePreview';
 
 export * from './articles/Articles';
 

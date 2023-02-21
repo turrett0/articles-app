@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IPaginatedServerResponse, IPagination } from '../../shared'
+import { IPaginatedServerResponse, } from '../../shared'
 
-import { IArticle, IArticlePreview, ICreateArticleFormData } from './models'
+import { IArticle, IArticlePreview, ICreateArticleFormData, TGetArticlesRequestParams } from './models'
 
 export const articlesAPI = createApi({
   reducerPath: 'articlesAPI',
@@ -10,7 +10,7 @@ export const articlesAPI = createApi({
   }),
   tagTypes: ['articles'], //
   endpoints: (builder) => ({
-    getArticles: builder.query<IPaginatedServerResponse<IArticlePreview[]>, IPagination>({
+    getArticles: builder.query<IPaginatedServerResponse<IArticlePreview[]>, TGetArticlesRequestParams>({
       query: (pagination) => ({
         url: `/articles`,
         params: pagination,
