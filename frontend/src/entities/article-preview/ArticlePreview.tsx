@@ -18,7 +18,9 @@ const ArticlePreview: FC<Props> = ({ articleData }) => {
         <Card hoverable style={{ height: 150 }} bodyStyle={{ padding: 8, height: '100%' }}>
           <SArticlePreviewInner>
             <Typography.Paragraph ellipsis={{ rows: 2, symbol: '...' }}>
-              <Typography.Text strong>{title}</Typography.Text>
+              <Typography.Text strong underline>
+                {title}
+              </Typography.Text>
             </Typography.Paragraph>
             <Row justify={'end'}>
               <Typography.Text>{toDate(date)}</Typography.Text>
