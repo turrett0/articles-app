@@ -5,6 +5,7 @@ import { IArticle } from '../../http/api/articles/models'
 import { useGetCommentsQuery } from '../../http/api/comments'
 import { IPagination } from '../../http/shared'
 import { SafeZone } from '../../layouts/safeZone/SafeZoneLayout'
+import { Pagination } from '../../shared/pagination/Pagination'
 import { CommonSkeleton } from '../../shared/Skeleton/Skeleton'
 import { SComments } from './Comments.styled'
 
@@ -23,7 +24,7 @@ const Comments: FC<Props> = ({ articleId }) => {
     return <>placeholder 404</>
   }
 
-  if(!total){
+  if (!total) {
     return <></>
   }
 
@@ -35,15 +36,32 @@ const Comments: FC<Props> = ({ articleId }) => {
             <Typography.Title level={4}>Commetaries</Typography.Title>
           </Row>
           <Row gutter={[0, 16]}>
-            {isLoading ? (
-              <CommonSkeleton span={24} />
-            ) : (
-              comments.map((comment) => (
-                <Col span={24}>
-                  <Comment commentData={comment} />
+            <Col span={24}>
+              {}
+              {isLoading ? (
+                <CommonSkeleton span={24} />
+              ) : (
+                <Row gutter={[0, 16]}>
+                  {comments.map((comment) => (
+                    <Col span={24}>
+                      <Comment commentData={comment} />
+                    </Col>
+                  ))}
+                </Row>
+              )}
+            </Col>
+            <Col span={24}>
+              <Row justify={'end'}>
+                <Col>
+                  <Pagination
+                    page={pagination.page}
+                    count={pagination.count}
+                    total={total}
+                    setPagination={setPagination}
+                  />
                 </Col>
-              ))
-            )}
+              </Row>
+            </Col>
           </Row>
         </Card>
       </SafeZone>

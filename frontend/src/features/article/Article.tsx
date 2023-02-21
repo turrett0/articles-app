@@ -2,7 +2,7 @@ import { Card, Col, Row, Typography } from 'antd'
 import { FC } from 'react'
 import { IArticle } from '../../http/api/articles/models'
 import { SafeZone } from '../../layouts/safeZone/SafeZoneLayout'
-import GoBack from '../../shared/GoBack/GoBack'
+import GoBack from '../../shared/goBack/GoBack'
 import { toDate } from '../../tools/date'
 
 type Props = {

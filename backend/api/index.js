@@ -11,13 +11,14 @@ router.get('/articles', function (req, res, next) {
   console.log(req.query)
   if (page && count) {
 
-    let articles = paginate(mocks.articles, count, page).map(function (article) {
+    let articles = mocks.articles.map(function (article) {
       return assign({}, article, {
         text: undefined,
       })
     })
 
-    res.json({ total: articles.length, data: articles })
+    const paginatedArticles = paginate(articles, count, page);
+    res.json({ total: articles.length, data: paginatedArticles })
   }
   res.status(500).json({ error: 'Internal server error' })
 
@@ -58,7 +59,7 @@ router.get('/comments', function (req, res, next) {
       const paginatedComments = paginate(comments, count, page)
       console.log({paginatedComments,page,count})
   res.json({
-    data: paginatedComments, total: paginatedComments.length
+    data: paginatedComments, total: comments.length
   })
 })
 

@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Arrow } from '../../assets/icons'
-import { SGoBack } from './GoBack.styled'
+// import { SGoBack } from './GoBack.styled'
+
 
 type Props = {
   to?: string
@@ -13,9 +14,9 @@ const GoBack: FC<Props> = ({ to }) => {
 
   return (
     <Link to={previousLocation}>
-      <SGoBack>
+      <div>
         <Arrow />
-      </SGoBack>
+      </div>
     </Link>
   )
 }
