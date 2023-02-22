@@ -20,6 +20,8 @@ export interface ICreateArticleFormData {
 
 export type IArticlesSearchParams = {
   title?: string | null
+  startDate?: string | null
+  endDate?: string | null
 }
 
 export type TGetArticlesRequestParams = IPagination & IArticlesSearchParams

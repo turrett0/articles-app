@@ -9,12 +9,29 @@ type Props = {
 export const ArticlesSearchBar: FC<Props> = ({ onSubmit }) => {
   const onFormClearHandler = () => {
     form.resetFields()
-    onSubmit(form.getFieldsValue())
+    onSubmit({
+      title: null,
+      endDate: null,
+      startDate: null,
+    })
   }
 
   const [form] = Form.useForm()
+
+  const onSubmitFormHandler = () => {
+    const formData: { [key: string]: any } = form.getFieldsValue()
+    const values: IArticlesSearchParams = {}
+    if (formData.rangeDate) {
+      values.startDate = JSON.stringify(formData.rangeDate[0].format('YYYY-MM-DD'))
+      values.endDate = JSON.stringify(formData.rangeDate[1].format('YYYY-MM-DD'))
+    }
+    values.title = formData.title
+
+    onSubmit(values)
+  }
+
   return (
-    <Form form={form} onFinish={onSubmit}>
+    <Form form={form} onFinish={onSubmitFormHandler}>
       <Row gutter={[16, 0]}>
         <Col>
           <Form.Item name={'title'}>

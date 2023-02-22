@@ -1,5 +1,5 @@
 import { Grid, Row, Col } from 'antd'
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import { IArticlesSearchParams, TGetArticlesRequestParams, useGetArticlesQuery } from '../../http/api/articles'
 import { SafeZone } from '../../layouts/safeZone/SafeZoneLayout'
 import { EmptyFallback } from '../../shared/emptyFallback/EmptyFallback'
@@ -20,6 +20,7 @@ const Articles = () => {
     const count = params.get('count')
     if (page || count) {
       setPagination((prev) => ({
+        ...prev,
         page: page ? +page : prev.page,
         count: count ? +count : prev.count,
       }))
